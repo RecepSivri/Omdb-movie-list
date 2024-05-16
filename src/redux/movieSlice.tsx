@@ -1,28 +1,21 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit'
+import { searchMoviesService } from '../services/services';
+import { FetchMovieParams, IMovieState } from '../models/models';
 
-export interface IMovieState{
-    movies: any[],
-    pageNum: number,
-    total: number,
-    error: string | null,
-    loading: boolean
-}
+
 
 const initialState: IMovieState = {
     movies: [],
-    pageNum : 0,
+    pageNum : 1,
     total: 0,
     error: '',
     loading: false
 }
 
-interface FetchMovieParams {
-    name: string, page: number
-  }
 
 export const searchMovies = createAsyncThunk<any, FetchMovieParams>('movies', async ( {name, page}  ) => {
-    const response = await fetch('https://www.omdbapi.com/?s='+name+'&apikey=fdf5544f&page='+ page)
+    const response = await searchMoviesService(name,page);
     return response.json();
   })
 
@@ -38,7 +31,9 @@ const movieSlice = createSlice({
             state.loading = false;
             state.error = null;
             state.movies = action.payload.Search;
-            state.total = action.payload.totalResults
+            state.total = action.payload.totalResults;
+            const {arg} = action.meta;
+            state.pageNum = arg.page;
         }).addCase(searchMovies.rejected,(state, action:PayloadAction<any>) => {
             state.loading = false;
             state.error = action.payload;
@@ -48,5 +43,4 @@ const movieSlice = createSlice({
   })
 
  
-
   export default movieSlice.reducer
