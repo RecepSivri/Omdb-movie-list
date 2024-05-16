@@ -17,3 +17,15 @@ export interface IMovie {
 export interface FetchMovieParams {
     name: string, page: number
 }
+
+export interface ITableProps<T> {
+    data: T[];
+    pageNum: number;
+    total: number
+    columns: IColumn[];
+}
+
+export interface IColumn {
+    section: string;
+    header: string;
+}
