@@ -103,10 +103,7 @@ function DetailPageComponent(props: IDetailPageComponentProps) {
           </div>
         </div>
       )}
-      {
-        loading &&
-        <Loader/>
-      }
+      {loading && <Loader />}
     </>
   );
 }

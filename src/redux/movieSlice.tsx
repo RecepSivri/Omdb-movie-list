@@ -12,8 +12,9 @@ const initialState: IMovieState = {
 
 export const searchMovies = createAsyncThunk<any, FetchMovieParams>(
   "movies",
-  async ({ name, page }) => {
-    const response = await searchMoviesService(name, page);
+  async ({ name, page, year }) => {
+    console.log(year)
+    const response = await searchMoviesService(name, page, year);
     return response.json();
   },
 );

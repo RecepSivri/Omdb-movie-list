@@ -17,6 +17,7 @@ export interface IMovie {
 export interface FetchMovieParams {
   name: string;
   page: number;
+  year: string;
 }
 
 export interface ITableProps<T> {

@@ -22,16 +22,31 @@
   }
 }
 
-.app-header{
+.app-header {
   margin-top: 50px;
   margin-bottom: 30px;
   font-size: 40px;
   color: #5a5a5a;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .movie-icon {
   width: 32px;
   margin-left: 15px;
   transform: rotate(45deg);
+}
+
+.year-input {
+  width: 120px;
+  height: 39px;
+  font-size: 18px;
+  border-radius: 0px !important;
+  border: none;
+  color: #555;
+  border: 1px solid #ccc;
+  margin-left: 5px;
+}
+
+.year-input:focus {
+  outline: none;
 }

@@ -6,7 +6,9 @@ import "./mainPage.scss";
 import "../../App.css";
 import Table from "../../components/table/table";
 import Loader from "../../components/loader/loader";
+import { DatePicker } from "antd";
 import SearchInput from "../../components/searchInput/searchInput";
+import moment from "moment";
 
 interface IMainPageComponentProps {
   toastr: any;
@@ -17,10 +19,12 @@ function MainPageComponent(props: IMainPageComponentProps) {
   const { movies, pageNum, total, loading } = data;
   const [input, setInput] = useState("pokemon");
   const [search, setSearch] = useState(input);
+  const [year, setYear] = useState("");
   const { toastr } = props;
 
+  console.log(year);
   const changePage = (page: number) => {
-    dispatch(searchMovies({ name: search, page: page }));
+    dispatch(searchMovies({ name: search, page: page, year: year }));
   };
   const columns: IColumn[] = [
     { header: "Title", section: "Title", width: "40%" },
@@ -38,7 +42,7 @@ function MainPageComponent(props: IMainPageComponentProps) {
     },
   ];
   useEffect(() => {
-    dispatch(searchMovies({ name: search, page: 1 }));
+    dispatch(searchMovies({ name: search, page: 1,year: year }));
   }, []);
 
   const setValue = (value: string) => {
@@ -48,20 +52,31 @@ function MainPageComponent(props: IMainPageComponentProps) {
   const onSearch = () => {
     setSearch(input);
     if (input.length >= 3) {
-      dispatch(searchMovies({ name: input, page: 1 }));
+      dispatch(searchMovies({ name: input, page: 1, year: year }));
     } else {
       toastr("Search Error", "Please enter input with a minimum length of 3!");
     }
   };
+
+  const onChange = (value: Date) => {
+    if (value !== null) {
+      setYear(moment(new Date(value)).format("yyyy"));
+    } else {
+      setYear("");
+    }
+  };
   return (
     <div className="column-layout-start-center" style={{ width: "100%" }}>
-
       <div className="app-header">
         Movie Search Engine
-        <img className="movie-icon" src={require("../../assets/movie-icon.png")}/>
+        <img
+          className="movie-icon"
+          src={require("../../assets/movie-icon.png")}
+        />
       </div>
       <div className="search-area">
         <SearchInput value={input} setValue={setValue} />
+        <DatePicker className="year-input" onChange={onChange} picker="year" />
         <div
           className="search-button"
           onClick={() => {
