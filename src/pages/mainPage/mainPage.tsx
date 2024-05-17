@@ -13,7 +13,8 @@ function MainPageComponent() {
   const dispatch = useAppDispatch();
   const data = useAppSelector((state) => state.movie);
   const { movies, pageNum, total, loading } = data;
-  const [search, setSearch] = useState("pokemon");
+  const [input, setInput] = useState("pokemon");
+  const [search, setSearch] = useState(input);
   const [api, contextHolder] = notification.useNotification();
 
   const changePage = (page: number) => {
@@ -38,12 +39,13 @@ function MainPageComponent() {
   };
 
   const setValue = (value: string) => {
-    setSearch(value.trim());
+    setInput(value.trim());
   };
 
   const onSearch = () => {
+    setSearch(input);
     if (search.length > 3) {
-      dispatch(searchMovies({ name: search, page: 1 }));
+      dispatch(searchMovies({ name: input, page: 1 }));
     } else {
       toastr("Search Error", "Please enter input with a minimum length of 3!");
     }
@@ -52,7 +54,7 @@ function MainPageComponent() {
     <div className="column-layout-start-center" style={{ width: "100%" }}>
       {contextHolder}
       <div className="search-area">
-        <SearchInput value={search} setValue={setValue} />
+        <SearchInput value={input} setValue={setValue} />
         <div
           className="search-button"
           onClick={() => {
