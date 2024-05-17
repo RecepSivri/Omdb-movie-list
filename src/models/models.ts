@@ -26,6 +26,7 @@ export interface ITableProps<T> {
   columns: IColumn[];
   changePage: (value: number) => void;
   pageListSize: number;
+  notFoundText: string;
 }
 
 export interface IColumn {
@@ -42,5 +43,5 @@ export interface IPaginationProps {
 
 export interface ISearchInput {
   value: string;
-  setValue: (value: string) => void
+  setValue: (value: string) => void;
 }

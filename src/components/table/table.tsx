@@ -3,9 +3,12 @@ import "./table.scss";
 import "../../App.css";
 import Pagination from "./pagintaion/pagination";
 function Table(props: ITableProps<any>) {
-  const { data, pageNum, total, columns, changePage, pageListSize } = props;
+  const { data, pageNum, total, columns, changePage, pageListSize, notFoundText } = props;
   return (
-    <div>
+    <>
+    {
+      data.length > 0 && 
+      <div>
       <div className="column-layout-start table">
         <div key={"table-header"} className="row-layout-start table-header">
           {columns.map((item: IColumn, index: number) => (
@@ -42,6 +45,15 @@ function Table(props: ITableProps<any>) {
         pageListSize={pageListSize}
       />
     </div>
+    }
+    {
+      data.length === 0 && <div className="row-layout-center" style={{marginTop: '100px'}}>
+        <img width={"96x"} src={require("../../assets/not-found.png")} />
+        <div className="not-found-text">{notFoundText}</div>
+      </div>
+    }
+    </>
+    
   );
 }
 

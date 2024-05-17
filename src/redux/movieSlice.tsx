@@ -29,17 +29,20 @@ const movieSlice = createSlice({
         state.loading = true;
       })
       .addCase(searchMovies.fulfilled, (state, action) => {
+        const { Response } = action.payload;
+       
         state.loading = false;
-        state.error = null;
-        state.movies = action.payload.Search;
-        state.total = action.payload.totalResults;
-        const { arg } = action.meta;
-        state.pageNum = arg.page;
-      })
-      .addCase(searchMovies.rejected, (state, action: PayloadAction<any>) => {
-        state.loading = false;
-        state.error = action.payload;
-        state.movies = action.payload;
+        if (Response === 'True') {
+          state.movies = action.payload.Search;
+          state.total = action.payload.totalResults;
+          const { arg } = action.meta;
+          state.pageNum = arg.page;
+        } else 
+        if (Response === 'False') {
+          state.error = 'true';
+          state.movies = [];
+          state.total = 0;
+        }
       });
   },
 });
