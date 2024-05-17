@@ -1,31 +1,39 @@
-export interface IMovieState{
-    movies: any[],
-    pageNum: number,
-    total: number,
-    error: string | null,
-    loading: boolean
+export interface IMovieState {
+  movies: any[];
+  pageNum: number;
+  total: number;
+  error: string | null;
+  loading: boolean;
 }
 
 export interface IMovie {
-    Title: string;
-    Year: string;
-    imdbID: string;
-    Type: string;
-    Poster: string;
+  Title: string;
+  Year: string;
+  imdbID: string;
+  Type: string;
+  Poster: string;
 }
 
 export interface FetchMovieParams {
-    name: string, page: number
+  name: string;
+  page: number;
 }
 
 export interface ITableProps<T> {
-    data: T[];
-    pageNum: number;
-    total: number
-    columns: IColumn[];
+  data: T[];
+  pageNum: number;
+  total: number;
+  columns: IColumn[];
+  changePage: (value: number) => void;
 }
 
 export interface IColumn {
-    section: string;
-    header: string;
+  section: string;
+  header: string;
+}
+
+export interface IPaginationProps {
+  pageNum: number;
+  total: number;
+  changePage: (value: number) => void;
 }

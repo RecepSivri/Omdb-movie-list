@@ -1,0 +1,13 @@
+.page-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+  margin-left: 3px;
+  border-radius: 2px;
+  min-width: 35px;
+  min-height: 30px;
+  cursor: pointer;
+}

@@ -39,3 +39,10 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.row-layout-end {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: end;
+}
