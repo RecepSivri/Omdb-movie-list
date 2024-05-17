@@ -13,15 +13,27 @@
   }
   .table-row-cell {
     border-right: 1px solid #ccc;
-    height: 40px;
+    height: 50px;
+    white-space: normal;
+    display: inline-block;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .table-body {
     width: 100%;
+    height: fit-content;
     border-bottom: 1px solid #ccc;
+    height: fit-content;
   }
 }
 
-.not-found-text{
+.not-found-text {
   color: #5a5a5a;
   font-size: 18px;
   font-weight: bold;

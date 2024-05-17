@@ -4,11 +4,16 @@ import "../../../App.css";
 import { useEffect, useState } from "react";
 function Pagination(props: IPaginationProps) {
   const { pageNum, total, changePage, pageListSize } = props;
-  const size = Math.ceil(total / 10);
   const [pageList, setPageList] = useState(0);
+  const [size, setSize] = useState(0);
   useEffect(() => {
-    setPageList(Math.ceil(pageNum / pageListSize) - 1);
-  }, [pageNum]);
+    setPageList(
+      Math.ceil(pageNum / pageListSize) - 1 < 0
+        ? 0
+        : Math.ceil(pageNum / pageListSize) - 1,
+    );
+    setSize(Math.ceil(total / 10));
+  }, [pageNum, total, pageListSize]);
 
   const calculatePaginatorSize = () => {
     return pageListSize + pageListSize * pageList < size
@@ -17,16 +22,19 @@ function Pagination(props: IPaginationProps) {
   };
   return (
     <div className="row-layout-end">
-      <div
-        className="page-button"
-        onClick={() => {
-          if (pageNum > 1) {
-            changePage(pageNum - 1);
-          }
-        }}
-      >
-        {"<"}
-      </div>
+      {size > pageListSize && (
+        <div
+          className="page-button"
+          onClick={() => {
+            if (pageNum > 1) {
+              changePage(pageNum - 1);
+            }
+          }}
+        >
+          {"<"}
+        </div>
+      )}
+
       {Array.from(
         Array(calculatePaginatorSize()),
         (item: number, index: number) => {
@@ -48,25 +56,30 @@ function Pagination(props: IPaginationProps) {
           );
         },
       )}
-      <div
-        className="page-button"
-        onClick={() => {
-          if (pageNum < size) {
-            changePage(pageNum + 1);
-          }
-        }}
-      >
-        {">"}
-      </div>
-      <div
-        className="page-button"
-        style={{ backgroundColor: size === pageNum ? "#ccc" : "#fff" }}
-        onClick={() => {
-          changePage(size);
-        }}
-      >
-        {size}
-      </div>
+      {size > pageListSize && (
+        <div
+          className="page-button"
+          onClick={() => {
+            if (pageNum < size) {
+              changePage(pageNum + 1);
+            }
+          }}
+        >
+          {">"}
+        </div>
+      )}
+
+      {size > pageListSize && (
+        <div
+          className="page-button"
+          style={{ backgroundColor: size === pageNum ? "#ccc" : "#fff" }}
+          onClick={() => {
+            changePage(size);
+          }}
+        >
+          {size}
+        </div>
+      )}
     </div>
   );
 }

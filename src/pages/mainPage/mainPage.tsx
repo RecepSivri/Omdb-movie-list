@@ -73,7 +73,7 @@ function MainPageComponent() {
           columns={columns}
           changePage={changePage}
           pageListSize={5}
-          notFoundText = {'Movie not found!'}
+          notFoundText={"Movie not found!"}
         />
       </div>
       {loading && <Loader />}
