@@ -50,3 +50,18 @@
 .year-input:focus {
   outline: none;
 }
+
+.select-type {
+  width: 120px;
+  height: 39px;
+  font-size: 18px;
+  border-radius: 0px !important;
+  border: none;
+  color: #555;
+  border: 1px solid #ccc;
+  margin-left: 5px;
+}
+
+.ant-select-selector {
+  border: none !important;
+}

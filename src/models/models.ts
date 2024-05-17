@@ -18,6 +18,7 @@ export interface FetchMovieParams {
   name: string;
   page: number;
   year: string;
+  type: string;
 }
 
 export interface ITableProps<T> {

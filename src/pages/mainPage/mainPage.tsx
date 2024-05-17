@@ -6,7 +6,7 @@ import "./mainPage.scss";
 import "../../App.css";
 import Table from "../../components/table/table";
 import Loader from "../../components/loader/loader";
-import { DatePicker } from "antd";
+import { DatePicker, Select } from "antd";
 import SearchInput from "../../components/searchInput/searchInput";
 import moment from "moment";
 
@@ -19,12 +19,14 @@ function MainPageComponent(props: IMainPageComponentProps) {
   const { movies, pageNum, total, loading } = data;
   const [input, setInput] = useState("pokemon");
   const [search, setSearch] = useState(input);
+  const [type, setType] = useState("");
   const [year, setYear] = useState("");
   const { toastr } = props;
 
-  console.log(year);
   const changePage = (page: number) => {
-    dispatch(searchMovies({ name: search, page: page, year: year }));
+    dispatch(
+      searchMovies({ name: search, page: page, year: year, type: type }),
+    );
   };
   const columns: IColumn[] = [
     { header: "Title", section: "Title", width: "40%" },
@@ -42,17 +44,16 @@ function MainPageComponent(props: IMainPageComponentProps) {
     },
   ];
   useEffect(() => {
-    dispatch(searchMovies({ name: search, page: 1,year: year }));
+    dispatch(searchMovies({ name: search, page: 1, year: year, type: type }));
   }, []);
 
   const setValue = (value: string) => {
     setInput(value.trim());
   };
-
   const onSearch = () => {
     setSearch(input);
     if (input.length >= 3) {
-      dispatch(searchMovies({ name: input, page: 1, year: year }));
+      dispatch(searchMovies({ name: input, page: 1, year: year, type: type }));
     } else {
       toastr("Search Error", "Please enter input with a minimum length of 3!");
     }
@@ -77,6 +78,19 @@ function MainPageComponent(props: IMainPageComponentProps) {
       <div className="search-area">
         <SearchInput value={input} setValue={setValue} />
         <DatePicker className="year-input" onChange={onChange} picker="year" />
+        <Select
+          className="select-type"
+          value={type}
+          onChange={(value) => {
+            setType(value);
+          }}
+          options={[
+            { value: "", label: <span>All</span> },
+            { value: "movie", label: <span>Movie</span> },
+            { value: "series", label: <span>Series</span> },
+            { value: "epilsode", label: <span>Epilsode</span> },
+          ]}
+        />
         <div
           className="search-button"
           onClick={() => {

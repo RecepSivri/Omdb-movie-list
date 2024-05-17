@@ -4,23 +4,24 @@ export const searchMoviesService = (
   name: string,
   page: number,
   year: string,
+  type: string,
 ) => {
-  const fetchValue =
-    year === ""
-      ? "https://www.omdbapi.com/?s=" +
-        name +
-        "&apikey=" +
-        apikey +
-        "&page=" +
-        page
-      : "https://www.omdbapi.com/?s=" +
-        name +
-        "&apikey=" +
-        apikey +
-        "&page=" +
-        page +
-        "&y=" +
-        year;
+  let fetchValue =
+    "https://www.omdbapi.com/?s=" +
+    name +
+    "&apikey=" +
+    apikey +
+    "&page=" +
+    page;
+
+  if (year !== "") {
+    fetchValue += "&y=" + year;
+  }
+
+  if (type !== "") {
+    fetchValue += "&type=" + type;
+  }
+
   return fetch(fetchValue);
 };
 
