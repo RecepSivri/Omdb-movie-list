@@ -55,6 +55,11 @@ function MainPageComponent(props: IMainPageComponentProps) {
   };
   return (
     <div className="column-layout-start-center" style={{ width: "100%" }}>
+
+      <div className="app-header">
+        Movie Search Engine
+        <img className="movie-icon" src={require("../../assets/movie-icon.png")}/>
+      </div>
       <div className="search-area">
         <SearchInput value={input} setValue={setValue} />
         <div

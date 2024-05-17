@@ -21,3 +21,17 @@
     cursor: pointer;
   }
 }
+
+.app-header{
+  margin-top: 50px;
+  margin-bottom: 30px;
+  font-size: 40px;
+  color: #5a5a5a;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.movie-icon {
+  width: 32px;
+  margin-left: 15px;
+  transform: rotate(45deg);
+}
