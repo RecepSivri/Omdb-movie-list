@@ -21,7 +21,7 @@ function Table(props: ITableProps<any>) {
               {columns.map((item: IColumn, index: number) => (
                 <div
                   className="table-row-cell row-layout-center"
-                  style={{ width: 100 / columns.length + "%" }}
+                  style={{ width: item.width }}
                 >
                   <h4 className="header-font">{item.header}</h4>
                 </div>
@@ -34,15 +34,29 @@ function Table(props: ITableProps<any>) {
                 style={{
                   backgroundColor: index % 2 === 0 ? "white" : "#f4f4f4",
                 }}
+                onClick={() => {window.open('/detail/'+item.imdbID,'_blank')}}
               >
                 {columns.map((value: IColumn, index: number) => (
-                  <div
-                    className="table-row-cell row-layout-center"
-                    style={{ width: 100 / columns.length + "%" }}
-                    key={index + "-" + item[value.section]}
-                  >
-                    {item[value.section]}
-                  </div>
+                  <>
+                    {value.section && (
+                      <div
+                        className="table-row-cell row-layout-center"
+                        style={{ width: value.width}}
+                        key={index + "-" + item[value.section]}
+                      >
+                        {item[value.section]}
+                      </div>
+                    )}
+                    {value.template && (
+                      <div
+                        className="table-row-cell row-layout-center"
+                        style={{ width: value.width}}
+                        key={index + "-" + item[value.header]}
+                      >
+                        {value.template()}
+                      </div>
+                    )}
+                  </>
                 ))}
               </div>
             ))}

@@ -7,36 +7,40 @@ import "../../App.css";
 import Table from "../../components/table/table";
 import Loader from "../../components/loader/loader";
 import SearchInput from "../../components/searchInput/searchInput";
-import { notification } from "antd";
 
-function MainPageComponent() {
+interface IMainPageComponentProps{
+  toastr: any
+}
+function MainPageComponent(props: IMainPageComponentProps) {
   const dispatch = useAppDispatch();
   const data = useAppSelector((state) => state.movie);
   const { movies, pageNum, total, loading } = data;
   const [input, setInput] = useState("pokemon");
   const [search, setSearch] = useState(input);
-  const [api, contextHolder] = notification.useNotification();
+  const {toastr} = props
+
 
   const changePage = (page: number) => {
     dispatch(searchMovies({ name: search, page: page }));
   };
   const columns: IColumn[] = [
-    { header: "Title", section: "Title" },
-    { header: "Type", section: "Type" },
-    { header: "ImdbID", section: "imdbID" },
-    { header: "Year", section: "Year" },
+    { header: "Title", section: "Title", width:"40%" },
+    { header: "Type", section: "Type", width:"15%" },
+    { header: "ImdbID", section: "imdbID", width:"15%"  },
+    { header: "Year", section: "Year", width:"15%"  },
+    {
+      header: "Detail",
+      template: () => (
+        <>
+          <img width={"32px"} src={require("../../assets/movie.png")} />
+        </>
+      ),
+      width:"15%" 
+    },
   ];
   useEffect(() => {
     dispatch(searchMovies({ name: search, page: 1 }));
   }, []);
-
-  const toastr = (header: string, description: string) => {
-    api.error({
-      message: header,
-      description: description,
-      placement: "bottomRight",
-    });
-  };
 
   const setValue = (value: string) => {
     setInput(value.trim());
@@ -52,7 +56,6 @@ function MainPageComponent() {
   };
   return (
     <div className="column-layout-start-center" style={{ width: "100%" }}>
-      {contextHolder}
       <div className="search-area">
         <SearchInput value={input} setValue={setValue} />
         <div

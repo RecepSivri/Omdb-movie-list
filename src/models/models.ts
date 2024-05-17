@@ -30,8 +30,10 @@ export interface ITableProps<T> {
 }
 
 export interface IColumn {
-  section: string;
+  section?: string;
   header: string;
+  template?: () => JSX.Element;
+  width: string;
 }
 
 export interface IPaginationProps {
