@@ -47,7 +47,7 @@ function MainPageComponent(props: IMainPageComponentProps) {
 
   const onSearch = () => {
     setSearch(input);
-    if (search.length > 3) {
+    if (input.length >= 3) {
       dispatch(searchMovies({ name: input, page: 1 }));
     } else {
       toastr("Search Error", "Please enter input with a minimum length of 3!");
