@@ -35,7 +35,12 @@ function Table(props: ITableProps<any>) {
           </div>
         ))}
       </div>
-      <Pagination pageNum={pageNum} total={total} changePage={changePage} pageListSize = {pageListSize} />
+      <Pagination
+        pageNum={pageNum}
+        total={total}
+        changePage={changePage}
+        pageListSize={pageListSize}
+      />
     </div>
   );
 }

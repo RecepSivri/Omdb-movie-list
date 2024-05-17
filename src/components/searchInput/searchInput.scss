@@ -1,0 +1,20 @@
+.search-input {
+  width: 350px;
+  height: 35px;
+  font-size: 18px;
+  border-radius: 0px !important;
+  border: none;
+  color: #555;
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.search-container {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: start;
+  border: 1px solid #ccc;
+}

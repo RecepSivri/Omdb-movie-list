@@ -1,0 +1,23 @@
+.search-area {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  margin-bottom: 20px;
+
+  .search-button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: #E0E0E0;
+    color: white;
+    width: 72px;
+    height: 38px;
+    margin-left: 5px;
+    color: #5a5a5a;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
