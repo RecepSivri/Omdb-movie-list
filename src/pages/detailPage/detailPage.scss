@@ -1,23 +1,74 @@
-.search-area {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: start;
-  margin-bottom: 20px;
+.information-area {
+  width: 100%;
+}
 
-  .search-button {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    background-color: #e0e0e0;
-    color: white;
-    width: 72px;
-    height: 38px;
-    margin-left: 5px;
-    color: #5a5a5a;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-  }
+.information-card {
+  width: 70%;
+  height: 100vh;
+}
+
+.movie-title {
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.genres {
+  color: white;
+  margin-right: 10px;
+  font-weight: bold;
+  border: 1px solid white;
+  border-radius: 7px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.plot {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.sub-information {
+  color: white;
+  margin-right: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #ddd;
+}
+
+.imdb-rating {
+  color: white;
+  margin-top: 1px;
+  margin-left: 7px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.imdb-votes {
+  color: white;
+  margin-top: 1px;
+  margin-left: 5px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.information-seperator {
+  width: 100%;
+  border-top: 2px solid #ccc;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.movie-information {
+  color: white;
+  font-size: 22px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-weight: bold;
 }

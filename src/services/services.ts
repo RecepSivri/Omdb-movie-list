@@ -10,3 +10,7 @@ export const searchMoviesService = (name: string, page: number) => {
       page,
   );
 };
+
+export const getMovieById = (id: string) => {
+  return fetch("https://omdbapi.com/?i=" + id + "&apikey=" + apikey);
+};

@@ -34,14 +34,16 @@ function Table(props: ITableProps<any>) {
                 style={{
                   backgroundColor: index % 2 === 0 ? "white" : "#f4f4f4",
                 }}
-                onClick={() => {window.open('/detail/'+item.imdbID,'_blank')}}
+                onClick={() => {
+                  window.open("/detail/" + item.imdbID, "_blank");
+                }}
               >
                 {columns.map((value: IColumn, index: number) => (
                   <>
                     {value.section && (
                       <div
                         className="table-row-cell row-layout-center"
-                        style={{ width: value.width}}
+                        style={{ width: value.width }}
                         key={index + "-" + item[value.section]}
                       >
                         {item[value.section]}
@@ -50,7 +52,7 @@ function Table(props: ITableProps<any>) {
                     {value.template && (
                       <div
                         className="table-row-cell row-layout-center"
-                        style={{ width: value.width}}
+                        style={{ width: value.width }}
                         key={index + "-" + item[value.header]}
                       >
                         {value.template()}

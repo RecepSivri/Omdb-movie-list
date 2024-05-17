@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
 import { searchMoviesService } from "../services/services";
 import { FetchMovieParams, IMovieState } from "../models/models";
 

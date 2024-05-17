@@ -8,8 +8,8 @@ import Table from "../../components/table/table";
 import Loader from "../../components/loader/loader";
 import SearchInput from "../../components/searchInput/searchInput";
 
-interface IMainPageComponentProps{
-  toastr: any
+interface IMainPageComponentProps {
+  toastr: any;
 }
 function MainPageComponent(props: IMainPageComponentProps) {
   const dispatch = useAppDispatch();
@@ -17,17 +17,16 @@ function MainPageComponent(props: IMainPageComponentProps) {
   const { movies, pageNum, total, loading } = data;
   const [input, setInput] = useState("pokemon");
   const [search, setSearch] = useState(input);
-  const {toastr} = props
-
+  const { toastr } = props;
 
   const changePage = (page: number) => {
     dispatch(searchMovies({ name: search, page: page }));
   };
   const columns: IColumn[] = [
-    { header: "Title", section: "Title", width:"40%" },
-    { header: "Type", section: "Type", width:"15%" },
-    { header: "ImdbID", section: "imdbID", width:"15%"  },
-    { header: "Year", section: "Year", width:"15%"  },
+    { header: "Title", section: "Title", width: "40%" },
+    { header: "Type", section: "Type", width: "15%" },
+    { header: "ImdbID", section: "imdbID", width: "15%" },
+    { header: "Year", section: "Year", width: "15%" },
     {
       header: "Detail",
       template: () => (
@@ -35,7 +34,7 @@ function MainPageComponent(props: IMainPageComponentProps) {
           <img width={"32px"} src={require("../../assets/movie.png")} />
         </>
       ),
-      width:"15%" 
+      width: "15%",
     },
   ];
   useEffect(() => {

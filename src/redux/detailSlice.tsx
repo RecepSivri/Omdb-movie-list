@@ -1,25 +1,48 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
-import { searchMoviesService } from "../services/services";
-import { FetchMovieParams, IMovieState } from "../models/models";
+import { getMovieById } from "../services/services";
+import { FetchDetailParams, IDetailState } from "../models/models";
 
-const initialState: IMovieState = {
-  movies: [],
-  pageNum: 1,
-  total: 0,
+const initialState: IDetailState = {
+  data: {
+    Title: "",
+    Year: "",
+    Rated: "",
+    Released: "",
+    Runtime: "",
+    Genre: "",
+    Director: "",
+    Writer: "",
+    Actors: "",
+    Plot: "",
+    Language: "",
+    Country: "",
+    Awards: "",
+    Poster: "",
+    Ratings: [],
+    Metascore: "",
+    imdbRating: "",
+    imdbVotes: "",
+    imdbID: "",
+    Type: "",
+    DVD: "",
+    BoxOffice: "",
+    Production: "",
+    Website: "",
+    Response: "",
+  },
   error: "",
   loading: false,
 };
 
-export const getDetail = createAsyncThunk<any, FetchMovieParams>(
+export const getDetail = createAsyncThunk<any, FetchDetailParams>(
   "detail",
-  async ({ name, page }) => {
-    const response = await searchMoviesService(name, page);
+  async ({ id }) => {
+    const response = await getMovieById(id);
     return response.json();
   },
 );
 
-const movieSlice = createSlice({
+const detailSlice = createSlice({
   name: "detail",
   initialState,
   reducers: {},
@@ -30,20 +53,15 @@ const movieSlice = createSlice({
       })
       .addCase(getDetail.fulfilled, (state, action) => {
         const { Response } = action.payload;
-
+        state.data = action.payload;
         state.loading = false;
         if (Response === "True") {
-          state.movies = action.payload.Search;
-          state.total = action.payload.totalResults;
-          const { arg } = action.meta;
-          state.pageNum = arg.page;
+          console.log(action.payload);
         } else if (Response === "False") {
           state.error = "true";
-          state.movies = [];
-          state.total = 0;
         }
       });
   },
 });
 
-export default movieSlice.reducer;
+export default detailSlice.reducer;
