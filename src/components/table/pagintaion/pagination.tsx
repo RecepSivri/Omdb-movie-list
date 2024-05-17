@@ -3,12 +3,16 @@ import "./pagination.scss";
 import "../../../App.css";
 import { useEffect, useState } from "react";
 function Pagination(props: IPaginationProps) {
-  const { pageNum, total, changePage } = props;
+  const { pageNum, total, changePage, pageListSize  } = props;
   const size = Math.ceil(total / 10);
-  const pageListSize = 5;
+  const [pageList, setPageList] = useState(0);
   useEffect(() => {
-    console.log(pageNum);
+    setPageList(Math.ceil(pageNum / pageListSize) - 1);
   }, [pageNum]);
+
+  const calculatePaginatorSize = () => {
+    return pageListSize + pageListSize * pageList < size ? pageListSize : size - pageListSize * pageList;
+  }
   return (
     <div className="row-layout-end">
       <div
@@ -21,23 +25,26 @@ function Pagination(props: IPaginationProps) {
       >
         {"<"}
       </div>
-      {Array.from(Array(pageListSize), (item: number, index: number) => {
+      {Array.from(Array(calculatePaginatorSize()), (item: number, index: number) => {
         return (
           <div
             className="page-button"
-            style={{ backgroundColor: index + 1 === pageNum ? "#ccc" : "#fff" }}
+            style={{
+              backgroundColor:
+                index + 1 + pageListSize * pageList === pageNum ? "#ccc" : "#fff",
+            }}
             onClick={() => {
-              changePage(index + 1);
+              changePage(index + 1 + pageListSize * pageList);
             }}
           >
-            {index + 1}
+            {index + 1 + pageListSize * pageList}
           </div>
         );
       })}
       <div
         className="page-button"
         onClick={() => {
-          if (pageNum <= size) {
+          if (pageNum < size) {
             changePage(pageNum + 1);
           }
         }}

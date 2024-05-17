@@ -30,6 +30,7 @@ function MainPageComponent() {
         total={total}
         columns={columns}
         changePage={changePage}
+        pageListSize = {5}
       />
     </div>
   );

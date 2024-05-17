@@ -3,7 +3,7 @@ import "./table.scss";
 import "../../App.css";
 import Pagination from "./pagintaion/pagination";
 function Table(props: ITableProps<any>) {
-  const { data, pageNum, total, columns, changePage } = props;
+  const { data, pageNum, total, columns, changePage, pageListSize } = props;
   return (
     <div>
       <div className="column-layout-start table">
@@ -35,7 +35,7 @@ function Table(props: ITableProps<any>) {
           </div>
         ))}
       </div>
-      <Pagination pageNum={pageNum} total={total} changePage={changePage} />
+      <Pagination pageNum={pageNum} total={total} changePage={changePage} pageListSize = {pageListSize} />
     </div>
   );
 }

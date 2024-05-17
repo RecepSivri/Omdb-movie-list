@@ -25,6 +25,7 @@ export interface ITableProps<T> {
   total: number;
   columns: IColumn[];
   changePage: (value: number) => void;
+  pageListSize: number
 }
 
 export interface IColumn {
@@ -36,4 +37,5 @@ export interface IPaginationProps {
   pageNum: number;
   total: number;
   changePage: (value: number) => void;
+  pageListSize: number
 }
